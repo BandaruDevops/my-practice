@@ -24,21 +24,21 @@ jobs:
         with:
           context: ./java
           push: true
-          tags: bandarudocker/my-practice-java:latest
+          tags: bandarudocker/my_repo_docker:java
 
       - name: Build & Push Node Image
         uses: docker/build-push-action@v5
         with:
           context: ./node
           push: true
-          tags: bandarudocker/my-practice-node:latest
+          tags: bandarudocker/my_repo_docker:node
 
       - name: Build & Push Python Image
         uses: docker/build-push-action@v5
         with:
           context: ./python
           push: true
-          tags: bandarudocker/my-practice-python:latest
+          tags: bandarudocker/my_repo_docker:python
 
       - name: Deploy to Azure VM
         run: |
