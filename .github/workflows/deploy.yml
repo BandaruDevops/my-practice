@@ -48,14 +48,16 @@ jobs:
                 bandarudocker/my_repo_docker:python-${{ env.IMAGE_TAG }}
       - name: Deploy to Azure VM
         run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
-          chmod 600 ~/.ssh/id_ed25519
-          ssh-keyscan -H ${{ secrets.VM_HOST }} >> ~/.ssh/known_hosts
+              mkdir -p ~/.ssh
+              echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
+              chmod 600 ~/.ssh/id_ed25519
+              ssh-keyscan -H ${{ secrets.VM_HOST }} >> ~/.ssh/known_hosts
 
-          ssh ${{ secrets.VM_USER }}@${{ secrets.VM_HOST }} << 'EOF'
-            cd ~/my-practice
-            docker compose pull
-            docker compose down
-            docker compose up -d
-          EOF
+              ssh ${{ secrets.VM_USER }}@${{ secrets.VM_HOST }} << EOF
+              cd ~/my-practice
+              export IMAGE_TAG=${{ github.sha }}
+              docker compose pull
+              docker compose down
+              docker compose up -d
+              EOF
+
