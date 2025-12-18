@@ -1,18 +1,16 @@
-version: "3.9"
-
 services:
+  java-app:
+    image: bandarudocker/my_repo_docker:java-${IMAGE_TAG}
+    ports:
+      - "8080:8080"
+
   node-app:
-    build: ./node
+    image: bandarudocker/my_repo_docker:node-${IMAGE_TAG}
     ports:
       - "3000:3000"
 
   python-app:
-    build: ./python
+    image: bandarudocker/my_repo_docker:python-${IMAGE_TAG}
     ports:
       - "5000:5000"
-
-  java-app:
-    build: ./java
-    ports:
-      - "8080:8080"
 
