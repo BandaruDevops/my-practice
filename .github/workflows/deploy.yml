@@ -26,7 +26,8 @@ jobs:
         with:
           context: ./java
           push: true
-          tags: bandarudocker/my_repo_docker:java
+          tags: |
+                bandarudocker/my_repo_docker:java
                 bandarudocker/my_repo_docker:java-${{ env.IMAGE_TAG }}
 
       - name: Build & Push Node Image
@@ -34,14 +35,16 @@ jobs:
         with:
           context: ./node
           push: true
-          tags: bandarudocker/my_repo_docker:node
+          tags: |
+                bandarudocker/my_repo_docker:node
                 bandarudocker/my_repo_docker:node-${{ env.IMAGE_TAG }}
       - name: Build & Push Python Image
         uses: docker/build-push-action@v5
         with:
           context: ./python
           push: true
-          tags: bandarudocker/my_repo_docker:python
+          tags: |
+                bandarudocker/my_repo_docker:python
                 bandarudocker/my_repo_docker:python-${{ env.IMAGE_TAG }}
       - name: Deploy to Azure VM
         run: |
